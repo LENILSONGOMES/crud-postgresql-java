@@ -20,9 +20,11 @@ public class ConexaoJdbc {
 
 	private static void conectar() {
 		try {
-			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection(url, user, password);
-			connection.setAutoCommit(false);
+			if (connection == null) {
+				Class.forName("org.postgresql.Driver");
+				connection = DriverManager.getConnection(url, user, password);
+				connection.setAutoCommit(false);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
